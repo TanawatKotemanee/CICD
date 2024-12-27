@@ -36,4 +36,4 @@ jobs:
           docker login ghcr.io -u ${{ github.actor }} -p ${{ secrets.GHCR_PAT }}
           docker pull ghcr.io/${{ github.actor }}/simple-api-go:latest
           cd api
-          docker-compose up -d
+          docker compose up -d
