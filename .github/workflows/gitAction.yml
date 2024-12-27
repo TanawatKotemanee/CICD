@@ -15,5 +15,7 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor}}
           password: ${{secrets.ReadWriteToken}}
-      # - name: Build the Docker image
-      #   run: docker build . --file Dockerfile --tag 
+      - name: Build the Docker image
+        run: docker build . --file Dockerfile --tag ghcr.io/${{ github.actor }}/docker-cicd:latest
+      - name: Push the Docker image
+        run: docker push ghcr.io/${{ github.actor }}/docker-cicd:latest
