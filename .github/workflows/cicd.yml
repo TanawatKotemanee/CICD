@@ -37,3 +37,4 @@ jobs:
           docker pull ghcr.io/${{ github.actor }}/simple-api-go:latest
           cd api
           docker compose up -d
+          docker system prune -f
