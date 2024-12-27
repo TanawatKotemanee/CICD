@@ -8,10 +8,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
-    - name: login github
-      with:
-        registry: ghcr.io
-        username: ${{ github.actor}}
-    # - name: Build the Docker image
-    #   run: docker build . --file Dockerfile --tag 
+      - uses: actions/checkout@v4
+      - name: login github
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor}}
+      # - name: Build the Docker image
+      #   run: docker build . --file Dockerfile --tag 
