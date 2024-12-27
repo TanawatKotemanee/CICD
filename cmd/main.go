@@ -26,6 +26,7 @@ func main() {
 	mux := http.NewServeMux()
 	mux.HandleFunc("GET /health", getHealthCheckHandler)
 	mux.HandleFunc("GET /db", getDBVersionHandler)
+	mux.HandleFunc("GET /version", getVersionHandler)
 
 	port := os.Getenv("PORT")
 	log.Printf("Server started on port %s\n", port)
@@ -60,6 +61,16 @@ func getDBVersionHandler(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
 	if err := json.NewEncoder(w).Encode(map[string]string{
 		"version": version,
+	}); err != nil {
+		http.Error(w, "Failed to encode JSON", http.StatusInternalServerError)
+	}
+}
+
+func getVersionHandler(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusOK)
+	if err := json.NewEncoder(w).Encode(map[string]string{
+		"version": "1.0.1",
 	}); err != nil {
 		http.Error(w, "Failed to encode JSON", http.StatusInternalServerError)
 	}
